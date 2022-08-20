@@ -1,0 +1,10 @@
+[
+  {
+      "model": "mentoolsapi.customer",
+      "pk": 1,
+      "fields": {
+          "user": 1,
+          "bio": "Mental Heath Advocate"
+      }
+  }
+]

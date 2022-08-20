@@ -1,0 +1,29 @@
+[
+  {
+      "model": "mentoolsapi.tool",
+      "pk": 1,
+      "fields": {
+          "title": "Box Breathing",
+          "description": "Breathe in for 4 seconds, hold for 4 seconds, exhale for 4 seconds.",
+          "tool_type": "Breathwork"
+      }
+  },
+  {
+      "model": "mentoolsapi.tool",
+      "pk": 2,
+      "fields": {
+          "title": "Nature Walk",
+          "description": "Going outside for a walk in the elements.",
+          "tool_type": "Nature"
+      }
+  },
+  {
+      "model": "mentoolsapi.tool",
+      "pk": 3,
+      "fields": {
+          "title": "Fidget Toy",
+          "description": "Playing with a variety of fidget toys for focus & calm.",
+          "tool_type": "Movement"
+      }
+  }
+]
