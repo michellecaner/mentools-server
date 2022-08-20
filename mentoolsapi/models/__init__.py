@@ -1,2 +1,2 @@
-from .tools import Tool
-from .customers import Customer
+from .tool import Tool
+from .customer import Customer
