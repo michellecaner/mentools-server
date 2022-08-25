@@ -1,8 +1,8 @@
 """View module for handling requests about tools"""
 from rest_framework.viewsets  import ViewSet
 from rest_framework.response import Response
-from rest_framework import serializers
-from mentoolsapi.models import Tool
+from rest_framework import serializers, status
+from mentoolsapi.models import Tool, Customer
 
 class ToolView(ViewSet):
     """Mentools tools view"""
@@ -23,6 +23,25 @@ class ToolView(ViewSet):
 
         serializer = ToolSerializer(tools, many=True)
         return Response(serializer.data)
+
+    def create(self, request):
+        """Handle POST operations
+
+        Returns
+            Response -- JSON serialized tool instance
+        """
+        # customer = Customer.objects.get(user=request.auth.user)
+
+        new_tool = Tool.objects.create(
+            # these are keyword arguments aka kwargs
+            # request.data is the body that's coming in & is a dictionary
+            title=request.data["title"],
+            description=request.data["description"],
+            tool_type=request.data["tool_type"],
+            # customer=customer
+        )
+        serializer = ToolSerializer(new_tool)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class ToolSerializer(serializers.ModelSerializer):
     """JSON serializer for tools"""
