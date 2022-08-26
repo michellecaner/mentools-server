@@ -1,2 +1,2 @@
 # mentools-server
-Full-stack practice project using Python/Django &amp; React
+Python/Django CRUD practice project 
