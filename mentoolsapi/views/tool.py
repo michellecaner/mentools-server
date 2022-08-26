@@ -60,6 +60,11 @@ class ToolView(ViewSet):
 
         return Response(None,status=status.HTTP_204_NO_CONTENT)
 
+    def destroy(self, request, pk):
+        tool = Tool.objects.get(pk=pk)
+        tool.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+    
 class ToolSerializer(serializers.ModelSerializer):
     """JSON serializer for tools"""
 
