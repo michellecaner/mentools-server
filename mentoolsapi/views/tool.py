@@ -2,7 +2,7 @@
 from rest_framework.viewsets  import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from mentoolsapi.models import Tool, Customer
+from mentoolsapi.models import Tool
 
 class ToolView(ViewSet):
     """Mentools tools view"""
@@ -30,6 +30,8 @@ class ToolView(ViewSet):
         Returns
             Response -- JSON serialized tool instance
         """
+        # if I had a customer/user field on my Tool model, I could use what's below to authenticate, but i don't
+        
         # customer = Customer.objects.get(user=request.auth.user)
 
         new_tool = Tool.objects.create(
@@ -42,6 +44,21 @@ class ToolView(ViewSet):
         )
         serializer = ToolSerializer(new_tool)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, pk):
+        """Handles PUT requests for a game
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+        edited_tool = Tool.objects.get(pk=pk)
+        edited_tool.title = request.data["title"]
+        edited_tool.description = request.data["description"]
+        edited_tool.tool_type = request.data["tool_type"]
+
+        edited_tool.save()
+
+        return Response(None,status=status.HTTP_204_NO_CONTENT)
 
 class ToolSerializer(serializers.ModelSerializer):
     """JSON serializer for tools"""
